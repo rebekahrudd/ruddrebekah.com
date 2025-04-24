@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page with Hidden Menu</title>
+    <style>
+
+        /* colors */
+        /* 85975A (green) */
+        /* E8E0C4 (cream) */
+        /* C69B5D (light brown) */
+        /* 563727 (brown) */
+        /* 848484 (gray) */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Full-screen background image */
+        .hero {
+            width: 100%;
+            height: 100vh;
+            background: url('background.png') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: black;
+            font-size: 2rem;
+            text-shadow: 2px 2px 8px black;
+            background-color: #e8e0c4;
+        }
+
+        /* Hidden navbar */
+        .navbar {
+            position: fixed;
+            top: -80px;
+            left: 0;
+            width: 100%;
+            background: #C69B5D;
+            padding: 15px 0;
+            text-align: center;
+            transition: top 0.3s ease-in-out;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+        }
+
+        .navbar a {
+            color: black;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            padding: 10px 15px;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #563727;
+        }
+        
+        .title {
+            position: absolute;
+        }
+
+        h2#title {
+            position: fixed;
+            margin: 20px;
+            z-index: 999;
+        }
+
+        h2#title2 {
+            background-color: #C69B5D;
+            position: absolute;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+
+        .image-container {
+            position: relative;
+            display: inline-block; /* Keeps the size of the parent image */
+        }
+
+        .hover-image {
+          position: absolute;
+          top: 30%;
+          left: 50%;
+          transform: translate(-50%, -50%) scale(.75);
+        }
+
+        .hover-image:hover {
+          transform: translate(-50%, -50%) scale(.90); 
+          cursor: pointer;
+        }
+
+        main {
+            background-color: #e8e0c4;
+        }
+
+        /* Footer Styles */
+        .footer {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr; /* 3 equal sections */
+            background-color: #C69B5D;
+            color: black;
+            padding: 20px;
+            text-align: center;
+            border-top: 3px solid #555;
+        }
+
+        /* Section Dividers */
+        .footer div {
+            padding: 10px;
+            position: relative;
+        }
+
+        .footer div:not(:last-child)::after {
+            content: "";
+            position: absolute;
+            top: 10%;
+            right: 0;
+            width: 2px;
+            height: 80%;
+            background-color: #555;
+        }
+
+        /* Links Style */
+        .footer a {
+            color: #563727;
+            text-decoration: none;
+            display: block;
+            margin: 5px 0;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .footer {
+                grid-template-columns: 1fr; /* Stack sections on smaller screens */
+                text-align: left;
+            }
+
+            .footer div:not(:last-child)::after {
+                width: 100%;
+                height: 2px;
+                top: auto;
+                bottom: 0;
+                left: 0;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <h2 id="title">Rebekah Rudd</h2>
+
+    <!-- Navbar -->
+    <div class="navbar" id="navbar">
+         <!-- home page: about me -->
+        <a href="portfolio.html">Portfolio</a>
+        <a href="travels.html">Travels</a>
+        <a href="crafts.html">Crafts</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+    <main>
+
+    <h3>Title</h3>
+    <p>Text Information</p>
+
+    </main>
+    
+    <script>
+        let prevScrollPos = window.pageYOffset;
+        window.onscroll = function () {
+            let currentScrollPos = window.pageYOffset;
+            let navbar = document.getElementById("navbar");
+            if (currentScrollPos > 100) {
+                navbar.style.top = "0"; // Show navbar when scrolling down
+            } else {
+                navbar.style.top = "-80px"; // Hide navbar when at the top
+            }
+            prevScrollPos = currentScrollPos;
+        };
+    </script>
+
+<footer class="footer">
+
+    <!-- Left: Webpage Links -->
+    <div>
+        <h3>Quick Links</h3>
+        <a href="#">🏠 Home</a>
+        <a href="#">📖 About Us</a>
+        <a href="#">🛒 Shop</a>
+        <a href="#">✍ Blog</a>
+        <a href="#">📞 Contact</a>
+    </div>
+    
+    <!-- Middle: Address -->
+    <div>
+        <h3>Our Location</h3>
+        <p>🏢 123 Main Street</p>
+        <p>📌 New York, NY 10001</p>
+        <p>🌎 USA</p>
+    </div>
+
+    <!-- Right: Contact Information -->
+    <div>
+        <h3>Contact Us</h3>
+        <p>📞 Phone: (123) 456-7890</p>
+        <p>✉ Email: contact@example.com</p>
+        <p>📍 Office Hours: Mon-Fri, 9AM-5PM</p>
+    </div>
+
+</footer>
+
+
+</body>
+</html>

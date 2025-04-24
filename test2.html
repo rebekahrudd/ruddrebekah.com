@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Page with Tag Filtering</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Blog Post Styling */
+        .blog-post {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .blog-title {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .blog-meta {
+            font-size: 14px;
+            color: #777;
+            margin: 5px 0;
+            font-style: italic;
+        }
+
+        .blog-description {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #555;
+        }
+
+        .read-more {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 12px;
+            background: #e67e22;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .read-more:hover {
+            background: #d35400;
+        }
+
+        /* Tag Styling */
+        .tags {
+            margin-top: 10px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #ccc;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            margin-right: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .tag:hover {
+            background: #e67e22;
+        }
+
+        .tag.active {
+            background: #e67e22;
+        }
+
+        /* Filter Buttons */
+        .filter-container {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .filter-button {
+            background: #ddd;
+            border: none;
+            padding: 8px 12px;
+            margin: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .filter-button:hover {
+            background: #e67e22;
+            color: white;
+        }
+
+        .filter-button.active {
+            background: #e67e22;
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- Filter Buttons -->
+        <div class="filter-container">
+            <button class="filter-button active" data-filter="all">All</button>
+            <button class="filter-button" data-filter="technology">Technology</button>
+            <button class="filter-button" data-filter="travel">Travel</button>
+            <button class="filter-button" data-filter="health">Health</button>
+        </div>
+
+        <!-- Blog Post 1 -->
+        <div class="blog-post" data-category="technology">
+            <h2 class="blog-title">The Future of AI</h2>
+            <div class="blog-meta">Posted on March 5, 2025</div>
+            <p class="blog-description">Artificial Intelligence is shaping the world in ways we never imagined...</p>
+            <div class="tags">
+                <a href="#" class="tag" data-filter="technology">Technology</a>
+                <a href="#" class="tag" data-filter="AI">AI</a>
+                <a href="#" class="tag" data-filter="Innovation">Innovation</a>
+            </div>
+            <a href="post1.html" class="read-more">Read More →</a>
+        </div>
+
+        <!-- Blog Post 2 -->
+        <div class="blog-post" data-category="travel">
+            <h2 class="blog-title">Exploring Japan</h2>
+            <div class="blog-meta">Posted on February 20, 2025</div>
+            <p class="blog-description">Japan is a beautiful country with a rich culture and history...</p>
+            <div class="tags">
+                <a href="#" class="tag" data-filter="travel">Travel</a>
+                <a href="#" class="tag" data-filter="Japan">Japan</a>
+                <a href="#" class="tag" data-filter="Culture">Culture</a>
+            </div>
+            <a href="post2.html" class="read-more">Read More →</a>
+        </div>
+
+        <!-- Blog Post 3 -->
+        <div class="blog-post" data-category="health">
+            <h2 class="blog-title">10 Healthy Eating Tips</h2>
+            <div class="blog-meta">Posted on January 10, 2025</div>
+            <p class="blog-description">Want to eat healthier? Here are 10 simple tips to help you improve your diet...</p>
+            <div class="tags">
+                <a href="#" class="tag" data-filter="health">Health</a>
+                <a href="#" class="tag" data-filter="Nutrition">Nutrition</a>
+                <a href="#" class="tag" data-filter="Wellness">Wellness</a>
+            </div>
+            <a href="post3.html" class="read-more">Read More →</a>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const filterButtons = document.querySelectorAll(".filter-button");
+            const tags = document.querySelectorAll(".tag");
+            const blogPosts = document.querySelectorAll(".blog-post");
+
+            function filterPosts(category) {
+                blogPosts.forEach(post => {
+                    if (category === "all" || post.dataset.category === category) {
+                        post.style.display = "block";
+                    } else {
+                        post.style.display = "none";
+                    }
+                });
+
+                filterButtons.forEach(button => {
+                    button.classList.toggle("active", button.dataset.filter === category);
+                });
+            }
+
+            // Add event listeners for filter buttons
+            filterButtons.forEach(button => {
+                button.addEventListener("click", function () {
+                    filterPosts(this.dataset.filter);
+                });
+            });
+
+            // Add event listeners for tags
+            tags.forEach(tag => {
+                tag.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    const tagCategory = this.dataset.filter;
+                    filterPosts(tagCategory);
+
+                    // Highlight active tag
+                    tags.forEach(tag => tag.classList.remove("active"));
+                    this.classList.add("active");
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
