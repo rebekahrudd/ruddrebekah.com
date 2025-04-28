@@ -1,0 +1,88 @@
+# Basic workflow
+name: build
+
+# Allow write permissions
+permissions:
+  contents: write
+
+# Use more columns for terminal output
+env:
+  COLUMNS: 120
+  PYTHONIOENCODING: utf8
+
+# Controls when the action will run
+# Workflow begins with push or PR events
+# Focuses on the main branch only
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Create one single job
+# This job performs all necessary checks
+jobs:
+  build:
+    # do not allow a build to run for more than 5 minutes
+    timeout-minutes: 5
+    # Use the latest version of Ubuntu
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        # Performs all actions on different versions of Python
+        python-version: ["3.12"]
+        os: [ubuntu-latest]
+        include:
+          - os: macos-latest
+            python-version: "3.12"
+          # the windows version is failing right now
+          # - os: windows-latest
+          #   python-version: "3.12"
+    # Define the workflow steps
+    steps:
+      # Checkout the code of the repository
+      - name: Check out Repository Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      # Setup Python for the current language version
+      - name: Setup Python ${{ matrix.python-version }}
+        if: always()
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      # Install pip
+      - name: Install Pip
+        if: always()
+        run: |
+          pip install -U pip
+          python -m pip install --user pipx
+      # Install Prettier (linting)
+      - name: Run Prettier
+        if: always()
+        run: |
+          curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+          \. "$HOME/.nvm/nvm.sh"
+          nvm install 22
+          # npm install
+          npm -v
+          npm install --save-dev --save-exact prettier
+          node --eval "fs.writeFileSync('.prettierrc','{}\n')"
+          node --eval "fs.writeFileSync('.prettierignore','# Ignore artifacts:\nbuild\ncoverage\n')"
+          npx prettier --check .
+      # Install poetry
+      # - name: Install Poetry and Project Dependencies
+      #   if: always()
+      #   run: |
+      #     pipx install poetry
+      #     pipx list
+      #     cd exam
+      #     poetry install
+      # Get the current time
+      - name: Get the Current Time
+        uses: josStorer/get-current-time@v2
+        if: always()
+        id: current-time
+        with:
+          format: YYYYMMDD-HH-mm-ss
+          utcOffset: "-05:00"
