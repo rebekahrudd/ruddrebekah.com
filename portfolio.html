@@ -1,132 +1,120 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
       content="Author: Rudd. Rebekah, Informational Website"
     />
     <title>Rebekah Rudd</title>
     <link rel="stylesheet" href="style.css" type="text/css" />
-</head>
+  </head>
 
-
-<body>
-
+  <body>
     <header>
-        <h2 id="title"><a href="new.html">Rebekah Rudd</a></h2>
-    
-        <!-- Navbar -->
-        <div class="navbar" id="navbar" style="top: 0;">
-            <!-- home page: about me -->
-           <a href="portfolio.html">Portfolio</a>
-           <a href="travels.html">Travels</a>
-           <a href="crafts.html">Crafts</a>
-           <a href="contact.html">Contact</a>
-       </div>
+      <h2 id="title"><a href="new.html">Rebekah Rudd</a></h2>
+
+      <!-- Navbar -->
+      <div class="navbar" id="navbar" style="top: 0">
+        <!-- home page: about me -->
+        <a href="portfolio.html">Portfolio</a>
+        <a href="travels.html">Travels</a>
+        <a href="crafts.html">Crafts</a>
+        <a href="contact.html">Contact</a>
+      </div>
     </header>
-    
-    <main style="background-color: #e8e0c4; padding-top: 90px;">
 
-    <div class="accordion-item" data-initially-open="true">
+    <main style="background-color: #e8e0c4; padding-top: 90px">
+      <div class="accordion-item" data-initially-open="true">
         <h3 class="accordion-title" role="button">
-            Positions
-            <span class="toggle-icon">−</span>
+          Positions
+          <span class="toggle-icon">−</span>
         </h3>
         <div class="accordion-content">
-
-            <!-- <h4>list name</h4> -->
-            <ul>
-                <li>list item</li>
-                <li>list item</li>
-            </ul>
-
+          <!-- <h4>list name</h4> -->
+          <ul>
+            <li>list item</li>
+            <li>list item</li>
+          </ul>
         </div>
-    </div>
+      </div>
 
-    <div class="accordion-item" data-initially-open="true">
+      <div class="accordion-item" data-initially-open="true">
         <h3 class="accordion-title" role="button">
-            Education
-            <span class="toggle-icon">+</span>
+          Education
+          <span class="toggle-icon">+</span>
         </h3>
         <div class="accordion-content">
-
-            <h4>list name</h4>
-            <ul>
-                <li>list item</li>
-            </ul>
-            
+          <h4>list name</h4>
+          <ul>
+            <li>list item</li>
+          </ul>
         </div>
-    </div>
-
-        
+      </div>
     </main>
 
-
-<footer class="footer">
-
-    <!-- Left: Webpage Links -->
-    <div>
+    <footer class="footer">
+      <!-- Left: Webpage Links -->
+      <div>
         <h3>Quick Links</h3>
         <a href="#">🏠 Home</a>
         <a href="#">📖 About Us</a>
         <a href="#">🛒 Shop</a>
         <a href="#">✍ Blog</a>
         <a href="#">📞 Contact</a>
-    </div>
-    
-    <!-- Middle: Address -->
-    <div>
+      </div>
+
+      <!-- Middle: Address -->
+      <div>
         <h3>Our Location</h3>
         <p>🏢 123 Main Street</p>
         <p>📌 New York, NY 10001</p>
         <p>🌎 USA</p>
-    </div>
+      </div>
 
-    <!-- Right: Contact Information -->
-    <div>
+      <!-- Right: Contact Information -->
+      <div>
         <h3>Contact Us</h3>
         <p>📞 Phone: (123) 456-7890</p>
         <p>✉ Email: contact@example.com</p>
         <p>📍 Office Hours: Mon-Fri, 9AM-5PM</p>
-    </div>
+      </div>
+    </footer>
 
-</footer>
-
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        document.querySelectorAll(".accordion-item").forEach((accordionItem) => {
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        document
+          .querySelectorAll(".accordion-item")
+          .forEach((accordionItem) => {
             let button = accordionItem.querySelector(".accordion-title");
             let content = accordionItem.querySelector(".accordion-content");
             let icon = button.querySelector(".toggle-icon");
 
             // Open by default if "data-initially-open" is set
             if (accordionItem.dataset.initiallyOpen === "true") {
-                content.style.maxHeight = content.scrollHeight + "px";
-                content.classList.add("open");
-                icon.textContent = "−";
+              content.style.maxHeight = content.scrollHeight + "px";
+              content.classList.add("open");
+              icon.textContent = "−";
             }
 
             button.addEventListener("click", function () {
-                let isOpen = content.classList.contains("open");
+              let isOpen = content.classList.contains("open");
 
-                if (isOpen) {
-                    // Close this accordion only
-                    content.style.maxHeight = null;
-                    content.classList.remove("open");
-                    icon.textContent = "+";
-                } else {
-                    // Open this accordion without closing others
-                    content.style.maxHeight = content.scrollHeight + "px";
-                    content.classList.add("open");
-                    icon.textContent = "−";
-                }
+              if (isOpen) {
+                // Close this accordion only
+                content.style.maxHeight = null;
+                content.classList.remove("open");
+                icon.textContent = "+";
+              } else {
+                // Open this accordion without closing others
+                content.style.maxHeight = content.scrollHeight + "px";
+                content.classList.add("open");
+                icon.textContent = "−";
+              }
             });
-        });
-    });
-</script>
-
-</body>
+          });
+      });
+    </script>
+  </body>
 </html>

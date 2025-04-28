@@ -1,227 +1,227 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blog Page with Filtering</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
 
-        body {
-            background-color: #f4f4f4;
-            padding: 20px;
-        }
+      body {
+        background-color: #f4f4f4;
+        padding: 20px;
+      }
 
+      .container {
+        display: flex;
+        max-width: 1200px;
+        margin: auto;
+      }
+
+      /* Blog Articles */
+      .blog-content {
+        flex: 1;
+        margin-right: 20px;
+      }
+
+      .article {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .article-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 10px;
+      }
+
+      .article-title {
+        font-size: 22px;
+        font-weight: bold;
+      }
+
+      .article-meta {
+        font-size: 14px;
+        color: #777;
+        text-align: right;
+      }
+
+      .article-description {
+        margin-top: 10px;
+        font-size: 16px;
+        color: #555;
+      }
+
+      .tags {
+        margin-top: 10px;
+      }
+
+      .tag {
+        display: inline-block;
+        background: #e67e22;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 12px;
+        margin-right: 5px;
+      }
+
+      /* Sidebar with categories (on the right) */
+      .sidebar {
+        width: 250px;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        height: fit-content;
+      }
+
+      .sidebar h2 {
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+
+      .categories {
+        list-style: none;
+      }
+
+      .categories li {
+        padding: 8px 0;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .categories a {
+        text-decoration: none;
+        color: #333;
+        font-size: 16px;
+        transition: 0.3s;
+        cursor: pointer;
+      }
+
+      .categories a:hover {
+        color: #e67e22;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
         .container {
-            display: flex;
-            max-width: 1200px;
-            margin: auto;
+          flex-direction: column;
         }
 
-        /* Blog Articles */
         .blog-content {
-            flex: 1;
-            margin-right: 20px;
+          margin-right: 0;
         }
 
-        .article {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .article-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 10px;
-        }
-
-        .article-title {
-            font-size: 22px;
-            font-weight: bold;
-        }
-
-        .article-meta {
-            font-size: 14px;
-            color: #777;
-            text-align: right;
-        }
-
-        .article-description {
-            margin-top: 10px;
-            font-size: 16px;
-            color: #555;
-        }
-
-        .tags {
-            margin-top: 10px;
-        }
-
-        .tag {
-            display: inline-block;
-            background: #e67e22;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 12px;
-            margin-right: 5px;
-        }
-
-        /* Sidebar with categories (on the right) */
         .sidebar {
-            width: 250px;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            height: fit-content;
+          width: 100%;
+          margin-top: 20px;
         }
-
-        .sidebar h2 {
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
-
-        .categories {
-            list-style: none;
-        }
-
-        .categories li {
-            padding: 8px 0;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .categories a {
-            text-decoration: none;
-            color: #333;
-            font-size: 16px;
-            transition: 0.3s;
-            cursor: pointer;
-        }
-
-        .categories a:hover {
-            color: #e67e22;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-            }
-
-            .blog-content {
-                margin-right: 0;
-            }
-
-            .sidebar {
-                width: 100%;
-                margin-top: 20px;
-            }
-        }
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <div class="container">
-        <!-- Blog Content -->
-        <div class="blog-content">
-            
-            <!-- Article 1 (Technology) -->
-            <div class="article" data-category="technology">
-                <div class="article-header">
-                    <div class="article-title">The Future of AI</div>
-                    <div class="article-meta">New York, USA | March 5, 2025</div>
-                </div>
-                <p class="article-description">
-                    Artificial Intelligence is shaping the world in ways we never imagined. Discover how AI is impacting industries from healthcare to finance.
-                </p>
-                <div class="tags">
-                    <span class="tag">Technology</span>
-                    <span class="tag">AI</span>
-                    <span class="tag">Innovation</span>
-                </div>
-            </div>
-
-            <!-- Article 2 (Travel) -->
-            <div class="article" data-category="travel">
-                <div class="article-header">
-                    <div class="article-title">Exploring Japan</div>
-                    <div class="article-meta">Tokyo, Japan | February 20, 2025</div>
-                </div>
-                <p class="article-description">
-                    Japan is a beautiful country with a rich culture and history. From Kyoto's temples to Tokyo's bustling streets, there's so much to explore!
-                </p>
-                <div class="tags">
-                    <span class="tag">Travel</span>
-                    <span class="tag">Japan</span>
-                    <span class="tag">Culture</span>
-                </div>
-            </div>
-
-            <!-- Article 3 (Health) -->
-            <div class="article" data-category="health">
-                <div class="article-header">
-                    <div class="article-title">10 Healthy Eating Tips</div>
-                    <div class="article-meta">Los Angeles, USA | January 10, 2025</div>
-                </div>
-                <p class="article-description">
-                    Want to eat healthier? Here are 10 simple tips to help you improve your diet and maintain a healthy lifestyle.
-                </p>
-                <div class="tags">
-                    <span class="tag">Health</span>
-                    <span class="tag">Nutrition</span>
-                    <span class="tag">Wellness</span>
-                </div>
-            </div>
-
+      <!-- Blog Content -->
+      <div class="blog-content">
+        <!-- Article 1 (Technology) -->
+        <div class="article" data-category="technology">
+          <div class="article-header">
+            <div class="article-title">The Future of AI</div>
+            <div class="article-meta">New York, USA | March 5, 2025</div>
+          </div>
+          <p class="article-description">
+            Artificial Intelligence is shaping the world in ways we never
+            imagined. Discover how AI is impacting industries from healthcare to
+            finance.
+          </p>
+          <div class="tags">
+            <span class="tag">Technology</span>
+            <span class="tag">AI</span>
+            <span class="tag">Innovation</span>
+          </div>
         </div>
 
-        <!-- Sidebar with categories (on the right) -->
-        <div class="sidebar">
-            <h2>Categories</h2>
-            <ul class="categories">
-                <li><a href="#" data-filter="all">All</a></li>
-                <li><a href="#" data-filter="technology">Technology</a></li>
-                <li><a href="#" data-filter="travel">Travel</a></li>
-                <li><a href="#" data-filter="health">Health</a></li>
-            </ul>
+        <!-- Article 2 (Travel) -->
+        <div class="article" data-category="travel">
+          <div class="article-header">
+            <div class="article-title">Exploring Japan</div>
+            <div class="article-meta">Tokyo, Japan | February 20, 2025</div>
+          </div>
+          <p class="article-description">
+            Japan is a beautiful country with a rich culture and history. From
+            Kyoto's temples to Tokyo's bustling streets, there's so much to
+            explore!
+          </p>
+          <div class="tags">
+            <span class="tag">Travel</span>
+            <span class="tag">Japan</span>
+            <span class="tag">Culture</span>
+          </div>
         </div>
 
+        <!-- Article 3 (Health) -->
+        <div class="article" data-category="health">
+          <div class="article-header">
+            <div class="article-title">10 Healthy Eating Tips</div>
+            <div class="article-meta">Los Angeles, USA | January 10, 2025</div>
+          </div>
+          <p class="article-description">
+            Want to eat healthier? Here are 10 simple tips to help you improve
+            your diet and maintain a healthy lifestyle.
+          </p>
+          <div class="tags">
+            <span class="tag">Health</span>
+            <span class="tag">Nutrition</span>
+            <span class="tag">Wellness</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar with categories (on the right) -->
+      <div class="sidebar">
+        <h2>Categories</h2>
+        <ul class="categories">
+          <li><a href="#" data-filter="all">All</a></li>
+          <li><a href="#" data-filter="technology">Technology</a></li>
+          <li><a href="#" data-filter="travel">Travel</a></li>
+          <li><a href="#" data-filter="health">Health</a></li>
+        </ul>
+      </div>
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const categoryLinks = document.querySelectorAll(".categories a");
-            const articles = document.querySelectorAll(".article");
+      document.addEventListener("DOMContentLoaded", function () {
+        const categoryLinks = document.querySelectorAll(".categories a");
+        const articles = document.querySelectorAll(".article");
 
-            categoryLinks.forEach(link => {
-                link.addEventListener("click", function (event) {
-                    event.preventDefault(); // Prevent page refresh
-                    
-                    let category = this.dataset.filter; // Get the selected category
-                    
-                    articles.forEach(article => {
-                        if (category === "all" || article.dataset.category === category) {
-                            article.style.display = "block"; // Show matching articles
-                        } else {
-                            article.style.display = "none"; // Hide others
-                        }
-                    });
-                });
+        categoryLinks.forEach((link) => {
+          link.addEventListener("click", function (event) {
+            event.preventDefault(); // Prevent page refresh
+
+            let category = this.dataset.filter; // Get the selected category
+
+            articles.forEach((article) => {
+              if (category === "all" || article.dataset.category === category) {
+                article.style.display = "block"; // Show matching articles
+              } else {
+                article.style.display = "none"; // Hide others
+              }
             });
+          });
         });
+      });
     </script>
-
-</body>
+  </body>
 </html>
