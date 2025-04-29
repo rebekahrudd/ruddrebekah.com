@@ -533,3 +533,29 @@ div#about p {
 #resume_download {
   text-align: center;
 }
+
+.cover_letter {
+  color: #563727;
+  margin: 20px;
+}
+
+.cover_letter_link {
+  color: #563727;
+  margin: 20px;
+  text-align: center;
+}
+
+.cover_letter_link a {
+  padding: 10px;
+  color: #563727;
+}
+
+.cover_letter a:hover {
+  color: #848484;
+}
+
+.cover_letter_title {
+  text-align: center;
+  color: #563727;
+  padding: 10px;
+}
