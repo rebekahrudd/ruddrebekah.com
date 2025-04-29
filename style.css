@@ -18,11 +18,11 @@
   height: 125vh;
   background: url("background.png") no-repeat center center/cover;
   display: flex;
-  justify-content: center;
+  text-align: center;
   align-items: center;
-  color: black;
-  /* color: #563727; */
-  color: #3a3a3a;
+  /* color: black; */
+  color: #563727;
+  /* color: #3a3a3a; */
   font-size: 5rem;
   text-shadow: 2px 2px 8px black;
   background-color: #e8e0c4;
@@ -74,7 +74,7 @@
 
 h2#text a {
   position: fixed;
-  margin: 10px;
+  margin: 20px;
   z-index: 999;
   color: #563727;
   text-decoration: none;
@@ -142,7 +142,7 @@ img#profile {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr; /* 3 equal sections */
   background-color: #c69b5d;
-  color: black;
+  color: #563727;
   padding: 20px;
   text-align: center;
   border-top: 0.25rem solid #563727;
@@ -516,3 +516,20 @@ h1 {
         display: inline-block;
         padding: 1rem 1rem;
       } */
+
+div#about p {
+  align-content: center;
+  padding: 10px;
+}
+
+#resume_download a {
+  color: #563727;
+}
+
+#resume_download a:hover {
+  color: #848484;
+}
+
+#resume_download {
+  text-align: center;
+}
