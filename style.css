@@ -589,3 +589,7 @@ div#about p {
 #return a:hover {
   color: #848484;
 }
+
+.timeline {
+  list-style-type: none;
+}
