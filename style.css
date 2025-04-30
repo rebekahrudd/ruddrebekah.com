@@ -559,3 +559,33 @@ div#about p {
   color: #563727;
   padding: 10px;
 }
+
+.the-invitation {
+  text-align: center;
+  color: #563727;
+  padding: 5px;
+}
+
+.the-invitation p {
+  text-align: center;
+}
+
+.the-invitation a {
+  /* color: #563727; */
+  padding: 10px;
+}
+.the-invitation a:hover {
+  color: #848484;
+}
+
+#return {
+  margin: 10px;
+}
+
+#return a {
+  color: #563727;
+  text-decoration: none;
+}
+#return a:hover {
+  color: #848484;
+}
