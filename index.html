@@ -14,7 +14,7 @@
 
   <body>
     <div class="top-division">
-      <h2 id="text"><a href="index.html">Rebekah Rudd</a></h2>
+      <h2 id="text"><a href="index.html" id="name">Rebekah Rudd</a></h2>
     </div>
 
     <!-- Background Image Section -->
@@ -23,9 +23,16 @@
         <img
           src="cropped_airplane.webp"
           alt="Dashed line from a plane flight"
+          class="large"
         />
+        <img
+          src="cropped_airplain_small.webp"
+          alt="Dashed line from a plane flight"
+          class="small"
+        />
+        Welcome to Rebekah Rudd's Website
       </a>
-      <p>Welcome to My Website!</p>
+      <!-- <p>Welcome to My Website!</p> -->
     </div>
 
     <!-- Navbar -->
@@ -37,23 +44,26 @@
       <!-- <a href="contact.html">✉️ Contact</a> -->
     </div>
 
+    <nav class="mobile-nav">
+      <div id="menu" style="display: none">
+        <li><a href="index.html">🏠 Home</a></li>
+        <li><a href="portfolio.html">📝 Portfolio</a></li>
+        <li><a href="travels.html">✈️ Blog</a></li>
+        <li><a href="crafts.html">🎨 Crafts 🖌️</a></li>
+      </div>
+
+      <button class="hamburger" id="menu-button">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+
     <main>
       <h3 id="about-me">About Me</h3>
 
       <div id="about">
-        <img
-          id="profile"
-          src="cropped_profile.webp"
-          alt="Rebekah Rudd"
-          style="
-            width: 425px;
-            height: 400px;
-            border-radius: 75%;
-            float: left;
-            margin-right: 20px;
-          "
-        />
-
+        <img class="profile" src="cropped_profile.webp" alt="Rebekah Rudd" />
         <p>
           My name is Rebekah Rudd and thank you for visiting my website! This
           website contains information about my resume under the "Portfolio"
@@ -110,9 +120,9 @@
       </div>
     </footer>
 
-    <script>
+    <!-- <script>
       let prevScrollPos = window.pageYOffset;
-      window.onscroll = function () {
+      window.scroll = function () {
         let currentScrollPos = window.pageYOffset;
         let navbar = document.getElementById("navbar");
 
@@ -124,6 +134,7 @@
 
         prevScrollPos = currentScrollPos;
       };
-    </script>
+    </script> -->
+    <script src="general.js"></script>
   </body>
 </html>
