@@ -634,7 +634,7 @@ button.hamburger {
   color: #563727;
   font-size: 1.5rem;
   cursor: pointer;
-  /* border: #563727; */
+  border: #563727;
 }
 
 .hamburger {
@@ -656,14 +656,14 @@ button.hamburger {
 }
 
 .hamburger span:nth-child(1) {
-  top: 0.75rem;
+  top: 0.85rem;
 }
 .hamburger span:nth-child(2) {
   top: 50%;
   transform: translateY(-50%);
 }
 .hamburger span:nth-child(3) {
-  bottom: 0.75rem;
+  bottom: 0.85rem;
 }
 
 /* When menu is active, turn into 'X' */
